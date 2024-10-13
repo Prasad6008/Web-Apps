@@ -23,6 +23,11 @@
             }
         }
 
+        function temp_toggleDeleteAllButton()
+        {
+            del_all_btn.style.display = 'none'
+        }
+
         function toggleDeleteAllButton() 
         {
             if (document.querySelector('.todos').hasChildNodes()) {
@@ -93,6 +98,7 @@
             document.getElementById('edit_input').value = para.innerHTML
 
             setupEditpopup(para, para.innerHTML)
+            temp_toggleDeleteAllButton()
         })
 
         //To hide
@@ -104,6 +110,7 @@
             if (target !== div && !div.contains(target)) 
             {
               div.style.display = 'none';
+              toggleDeleteAllButton()
             }
         })
         }
@@ -185,4 +192,5 @@
             })
             toggleDeleteAllButton()
         }
-//Coded by Prasad  :::: https://github.com/Prasad6008
+//Coded by Prasad  :::: https://github.com/Prasad6008 
+//Coded by Prasad  :::: https://www.linkedin.com/in/prasad-r-s-4256a7274/
