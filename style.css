@@ -1,0 +1,117 @@
+body
+        {
+            background-color: grey;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .cont
+        {
+            width: 300px;
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            height: 80vh;
+            margin: 10px auto;
+            overflow: auto;
+            position: relative;
+        }
+        /*Hiding scroll bar */
+        .cont::-webkit-scrollbar 
+        {
+            display: none; /* Hides the scrollbar */
+        }
+        #input
+        {
+            flex: 2;
+            border-radius: 6px;
+            font-size: larger;
+            margin-right: 10px;
+            padding: 2px;
+        }
+        #input:focus
+        {
+            background-color: grey;
+            color: white;
+            
+        }
+        #btn
+        {
+            color: white;
+            background-color: tomato;
+            border: none;
+            border-radius: 6px;
+        }
+        #btn:active
+        {
+            color: green;
+        }
+        .controlers
+        {
+            display: flex;
+        }
+        .editor
+        {
+            width: 200px;
+            background-color: rgb(58, 56, 56);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 30px;
+            border-radius: 10px;
+            display:none;
+        }
+        .editor div label
+        {
+            margin-right: 5px;
+        }
+        .editor div:nth-child(1)
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        #edit_delete
+        {
+            margin-right: 10px;
+        }
+        .deleteall
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,1200%);
+        }
+        .deleteall button
+        {
+            background-color: red;
+            border: 2px solid red;
+        }
+        .deleteall button:active
+        {
+            color: white;
+        }
+        .sureDelete
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: blueviolet;
+            padding: 10px 0px 20px 0px;
+            border: 2px dashed red;
+            border-radius: 10px;
+        }
+        #no
+        {
+            color: white;
+            background-color: green;
+            margin-right: 20px;
+        }
+        #yes
+        {
+            color: white;
+            background-color: red;
+        }
