@@ -16,6 +16,24 @@ body
             overflow: auto;
             position: relative;
         }
+        .info
+        {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+        a
+        {
+            text-decoration: underline;
+        }
+        .info div:nth-child(1)
+        {
+            padding: 0px 5px;
+        }
+        .info div:nth-child(2)
+        {
+            padding: 0px 5px;
+        }
         /*Hiding scroll bar */
         .cont::-webkit-scrollbar 
         {
@@ -32,8 +50,7 @@ body
         #input:focus
         {
             background-color: grey;
-            color: white;
-            
+            color: white;    
         }
         #btn
         {
