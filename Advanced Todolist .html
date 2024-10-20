@@ -305,7 +305,7 @@
         <div class="editor">
             <div>
                 <label for="">Todo:</label>
-                <input type="text" id="edit_input" maxlength="20">
+                <input type="text" id="edit_input" >
             </div>
             <div>
                 <button style="color: white;background-color:red;" id="edit_delete">Delete</button>
@@ -499,6 +499,7 @@
                     //console.log(para)
                     document.querySelector('.editor').style.display = 'none'
                     let edited_value = document.getElementById('edit_input').value
+                    edited_value.maxLength = 50
                     let current_index = todos.indexOf( orginalTask)
                     //console.log(edited_value,current_index)
 
