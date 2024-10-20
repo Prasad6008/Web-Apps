@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prasanth's</title>
+    <style>
+        body
+        {
+            background-color: grey;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .cont
+        {
+            width: 350px;
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            height: 85vh;
+            margin: 10px auto;
+            overflow: auto;
+            position: relative;
+        }
+        .todos 
+        {
+            max-height: 60vh; 
+            overflow-y: auto; 
+            overflow-x: hidden; 
+            margin-top: 20px; 
+        }
+        /*Hiding scroll bar */
+        .todos::-webkit-scrollbar 
+        {
+            display: none; /* Hides the scrollbar */
+        }
+        #input
+        {
+            flex: 2;
+            border-radius: 6px;
+            font-size: larger;
+            margin-right: 10px;
+            padding: 2px;
+        }
+        #input:focus
+        {
+            background-color: grey;
+            color: white;
+            
+        }
+        #btn
+        {
+            color: white;
+            background-color: tomato;
+            border: none;
+            border-radius: 6px;
+        }
+        #btn:active
+        {
+            color: green;
+        }
+        .controlers
+        {
+            display: flex;
+        }
+        .editor
+        {
+            width: 200px;
+            background-color: rgb(58, 56, 56);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 30px;
+            border-radius: 10px;
+            display:none;
+        }
+        .editor div label
+        {
+            margin-right: 5px;
+        }
+        .editor div:nth-child(1)
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        #edit_delete
+        {
+            margin-right: 10px;
+        }
+        .deleteall
+        {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,1200%);
+        }
+        .deleteall button
+        {
+            background-color: red;
+            border: 2px solid red;            
+        }
+        .deleteall button:active
+        {
+            color: white;
+        }
+        .sureDelete
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: blueviolet;
+            padding: 10px 0px 20px 0px;
+            border: 2px dashed red;
+            border-radius: 10px;
+        }
+        #no
+        {
+            color: white;
+            background-color: green;
+            margin-right: 20px;
+        }
+        #yes
+        {
+            color: white;
+            background-color: red;
+        }
+        .info
+        {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+        a
+        {
+            text-decoration: underline;
+        }
+        .info div:nth-child(1)
+        {
+            padding: 0px 5px;
+        }
+        .info div:nth-child(2)
+        {
+            padding: 0px 5px;
+        }
+        
+        @media (max-width:463px) /*My mobile */
+        {
+        .cont
+        {
+            width: 350px;
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            height: 85vh;
+            margin: 10px auto;
+            overflow: auto;
+            position: relative;
+        }
+        /*Hiding scroll bar */
+        #input
+        {
+            flex: 2;
+            border-radius: 6px;
+            font-size: larger;
+            margin-right: 10px;
+            padding: 2px;
+        }
+        #input:focus
+        {
+            background-color: grey;
+            color: white;
+            
+        }
+        #btn
+        {
+            color: white;
+            background-color: tomato;
+            border: none;
+            border-radius: 6px;
+        }
+        #btn:active
+        {
+            color: green;
+        }
+        .controlers
+        {
+            display: flex;
+        }
+        .editor
+        {
+            width: 200px;
+            background-color: rgb(58, 56, 56);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 30px;
+            border-radius: 10px;
+            display:none;
+        }
+        .editor div label
+        {
+            margin-right: 5px;
+        }
+        .editor div:nth-child(1)
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        #edit_delete
+        {
+            margin-right: 10px;
+        }
+        .deleteall
+        {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,1400%);
+        }
+        .deleteall button
+        {
+            background-color: red;
+            border: 2px solid red;            
+        }
+        .deleteall button:active
+        {
+            color: white;
+        }
+        .sureDelete
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: blueviolet;
+            padding: 10px 0px 20px 0px;
+            border: 2px dashed red;
+            border-radius: 10px;
+        }
+        #no
+        {
+            color: white;
+            background-color: green;
+            margin-right: 20px;
+        }
+        #yes
+        {
+            color: white;
+            background-color: red;
+        }
+        .info
+        {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+        a
+        {
+            text-decoration: underline;
+        }
+        .info div:nth-child(1)
+        {
+            padding: 0px 5px;
+        }
+        .info div:nth-child(2)
+        {
+            padding: 0px 5px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <h1>Todo List</h1>
+
+        <div class="controlers">
+            <input type="text" maxlength="50" id="input">
+            <button id="btn" onclick="start()">Add</button>
+            <!-- Coded by Prasanth -->
+        </div>
+
+        <div class="todos"></div>
+
+        <div class="editor">
+            <div>
+                <label for="">Todo:</label>
+                <input type="text" id="edit_input" maxlength="50">
+            </div>
+            <div>
+                <button style="color: white;background-color:red;" id="edit_delete">Delete</button>
+                <button style="color: white;background-color:green;" id="edit_submit">Submit</button>
+            </div>
+        </div>
+
+        <div class="editor">
+            <div>
+                <label for="">Todo:</label>
+                <input type="text" id="edit_input" maxlength="50">
+            </div>
+            <div>
+                <button style="color: white;background-color:red;" id="edit_delete">Delete</button>
+                <button style="color: white;background-color:green;" id="edit_submit">Submit</button>
+            </div>
+        </div>
+
+        <div class="deleteall">
+            <button id="del_all">Delete All</button>
+            <!-- Coded by Prasanth -->
+        </div>
+
+        <div class="sureDelete">
+            <h3>Are you sure to delete all</h3>
+            <button id="no">No</button>
+            <button id="yes">Yes</button>
+        </div>
+    </div>
+
+    <div class="info">
+       <div> <a target="_blank" href="https://www.linkedin.com/in/prasad-r-s-4256a7274/">Linkedin</a></div>
+       <div><a  target="_blank" href="https://github.com/Prasad6008">Github</a></div>
+    </div>
+
+    <script>
+        let todos = []
+        let lt  =  'line-through'
+        let no_lt = 'none'
+        
+
+        let del_all_btn = document.getElementById('del_all')
+        let sure_del_option = document.querySelector('.sureDelete')
+
+        toggleDeleteAllButton()
+        hidesureDelete()
+
+        //Checking the input
+        function start()
+        {
+            let input = String(document.getElementById('input').value)
+            
+
+            if(input.length == 0)
+            {
+                alert("Input cannot be empty...")//Coded by Prasanth
+            }
+            else
+            {
+                make_array(input)    
+                toggleDeleteAllButton()
+            }
+        }
+
+        function temp_toggleDeleteAllButton()
+        {
+            del_all_btn.style.display = 'none'
+        }
+        function toggleDeleteAllButton() 
+        {
+            if (document.querySelector('.todos').hasChildNodes()) {
+                del_all_btn.style.display = 'block'
+         
+                     } else {
+                del_all_btn.style.display = 'none'
+            }
+        }
+//Coded by Prasanth
+        del_all_btn.addEventListener('click', () => 
+        {
+            //Sure delete 
+            sure_del_option.style.display = 'block'
+            
+
+            let no = document.getElementById('no')
+            no.onclick = () =>
+            {
+                sure_del_option.style.display = 'none'
+            }
+
+            let yes = document.getElementById('yes')
+            yes.onclick = () =>
+            {
+                let todoContainer = document.querySelector('.todos')
+                todoContainer.innerHTML = ''  // Remove all todo elements from the DOM
+                todos = []  // Clear the todos array //Coded by Prasanth
+                localStorage.removeItem('KEY')  // Clear from localStorage
+                localStorage.removeItem('DONE')
+                sure_del_option.style.display = 'none'
+                del_all_btn.style.display = 'none'//Coded by Prasanth
+            }
+            
+            toggleDeleteAllButton()  // Hide the "Delete All" button
+        });
+       
+        //Hiding sure delete 
+        function hidesureDelete()
+        {
+            sure_del_option.style.display = 'none'
+        }
+
+        //Making Array
+        function make_array(x)
+        {
+            todos.push(x)
+            make_list(x)
+        }
+     //Coded by Prasanth   
+        //Make list of todos to show user
+        function make_list(y)
+        {
+            let div = document.createElement('div')
+            let tick_box = document.createElement('input')
+            tick_box.type = 'checkbox'
+            let para = document.createElement('p')
+            document.querySelector('.todos').appendChild(div)
+            div.appendChild(para).innerHTML = y
+            div.appendChild(tick_box)
+            
+            
+            //style of div
+            div.style.display = 'flex'
+            para.style.flex = '1'
+            tick_box.style.width = '20px'
+
+            para.style.color = 'white'
+            para.style.textAlign = 'left'
+            para.style.borderBottom = '1px dashed white'
+            para.style.paddingBottom = '8px'
+            input.value = ""
+        
+
+        //Set the todos array to the local storage
+        localStorage.setItem('KEY',JSON.stringify(todos))//Coded by Prasanth
+
+        //Done button functionality:
+        tick_box.onchange = () =>
+        {
+            toggleDone(para,tick_box)
+        }
+
+        //Editor Options
+        para.addEventListener('dblclick',()=>
+        {
+
+                if(para.style.textDecoration !== lt)
+                {
+                    let is_no_lt_element = para
+                    let editor = document.querySelector('.editor')
+                    editor.style.display = 'block'
+                    document.getElementById('edit_input').value = para.innerHTML
+
+                    setupEditpopup(div,para, para.innerHTML)
+                    temp_toggleDeleteAllButton() 
+                }
+        })
+
+        //To hide
+        document.addEventListener('click', function(event) 
+        {
+
+            var target = event.target;
+            var div = document.querySelector('.editor')
+          
+            if (target !== div && !div.contains(target)) 
+            {
+              div.style.display = 'none';
+              toggleDeleteAllButton()
+            }
+        })
+        }
+//Coded by Prasanth
+         //Edit events:
+         function setupEditpopup(div,para , orginalTask)
+         {
+             //Edit (Delete) ✔️
+             document.getElementById('edit_delete').onclick = ()=> 
+             {
+                 //console.log("working..")
+                 if(document.querySelector('.todos').contains(div))
+                 {
+                 document.querySelector('.todos').removeChild(div)
+                 remove(orginalTask)
+                 }//Coded by Prasanth
+             }
+
+             //Edit (Submit)
+            document.getElementById('edit_submit').onclick = ()=>
+            {
+                if(document.querySelector('.todos').contains(para))
+                {
+                    //console.log(para)
+                    document.querySelector('.editor').style.display = 'none'
+                    let edited_value = document.getElementById('edit_input').value
+                    let current_index = todos.indexOf( orginalTask)
+                    //console.log(edited_value,current_index)
+
+                    //changing
+                    let data  = JSON.parse(localStorage.getItem('KEY')) || []
+                    let data_index = data.indexOf(para.innerHTML)
+                    //console.log(data_index)
+
+                    if (current_index !== -1) {
+                        // Update the DOM element's content
+                        para.innerHTML = edited_value;
+        
+                        // Update the todos array with the new value
+                        setting(current_index, edited_value);
+                    }
+                }
+               
+            }
+         }
+//Coded by Prasanth
+        //Deleting
+        function remove(y)
+        {
+            let index = todos.indexOf(y)
+                if(y !== -1)
+                {
+                     todos.splice(index,1)
+                }
+                localStorage.setItem('KEY',JSON.stringify(todos))
+                document.querySelector('.editor').style.display = 'none'
+                toggleDeleteAllButton();
+        }
+
+        //Editing 
+        function setting(i,v)
+        {
+            //console.log(i,v)
+            todos[i] = v
+            //console.log(todos)
+            localStorage.setItem('KEY',JSON.stringify(todos))
+            toggleDeleteAllButton()
+        }
+
+        //when reloded to make existing data visible
+        window.onload
+        {
+      //      console.log("Loaded..")
+
+            todos = JSON.parse(localStorage.getItem('KEY')) || []//Coded by Prasanth
+
+            todos.forEach(val =>
+            {
+                //console.log(todos)
+                make_list(val)
+            })
+            toggleDeleteAllButton()   
+            
+            let done_data = JSON.parse(localStorage.getItem('DONE')) || []
+            //console.log(done_data)
+
+            let div = document.querySelector('.todos')
+            let item_count = div.childElementCount
+            let paras = document.querySelectorAll('p')
+
+            let common = todos.filter(item => done_data.includes(item))
+            //console.log("Common:",common)      
+
+            for(let i=0;i<item_count;i++)
+            {
+                //console.log(paras[i])
+                for(let j=0;j<common.length;j++)
+                {
+                    if(common[j] == paras[i].innerHTML)
+                    {
+                        //console.log("Data",paras[i])
+                        paras[i].style.textDecoration = lt
+
+
+                        let checkbox = paras[i].previousElementSibling || paras[i].nextElementSibling;
+                        // If checkbox exists, set it as checked
+                        if(checkbox && checkbox.tagName === 'INPUT' && checkbox.type === 'checkbox') 
+                        {
+                             checkbox.checked = true;
+                        }
+                    }
+                }
+            }
+            
+            //console.log(todos)
+            //console.log(done_data)    
+        }
+
+        let done_list = [];
+
+// to line-through
+function toggleDone(para, tick_box) {
+    var isChecked = tick_box.checked;
+
+    // Fetch existing "DONE" data from localStorage or initialize it as an empty array
+    let existing = JSON.parse(localStorage.getItem('DONE')) || [];
+
+
+    if (isChecked) 
+    {
+        // If checked, mark the paragraph as done
+        para.style.textDecoration = lt;
+
+        // If the item is not already in the done_list or existing data, add it
+        if (!existing.includes(para.innerHTML)) 
+        {
+            existing.push(para.innerHTML);
+        }
+        
+        // Update localStorage
+        localStorage.setItem("DONE", JSON.stringify(existing));
+    } 
+    else 
+    {
+        // If unchecked, remove the "done" status
+        para.style.textDecoration = no_lt;
+        // Remove the item from existing if it's there
+        existing = existing.filter(item => item != para.innerHTML);
+        // Update localStorage
+        localStorage.setItem("DONE", JSON.stringify(existing));
+    }
+    // Reflect the current done_list
+    done_list = existing;
+    //console.log("Done list:", done_list);
+}
+//Coded by Prasanth
+    </script>
+</body>
+</html>
